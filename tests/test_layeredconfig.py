@@ -1359,6 +1359,19 @@ class TestSubsections(unittest.TestCase):
         self.assertEqual(set(['home', 'processes']),
                          set(cfg.subsection))
 
+    def test_subsection_respects_subclass(self):
+        defaults = {
+            'subsection': {
+                'processes': 4
+            }
+        }
+
+        class SubclassedLayeredConfig(LayeredConfig):
+            pass
+
+        cfg = SubclassedLayeredConfig(Defaults(defaults))
+        self.assertIsInstance(cfg.subsection, SubclassedLayeredConfig)
+
 
 class TestLayeredSubsections(unittest.TestCase):
 

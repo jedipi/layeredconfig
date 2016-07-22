@@ -87,9 +87,9 @@ class LayeredConfig(object):
                                            empty=True,
                                            cascade=self._cascade))
             # 3. create a LayeredConfig object for the subsection
-            c = LayeredConfig(*s,
-                              cascade=self._cascade,
-                              writable=self._writable)
+            c = self.__class__(*s,
+                               cascade=self._cascade,
+                               writable=self._writable)
             c._sectionkey = k
             c._parent = self
             self._subsections[k] = c
